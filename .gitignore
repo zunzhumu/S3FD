@@ -1,0 +1,16 @@
+*.lst
+*.rec
+*.idx
+*.json
+*.params
+*.pdf
+*.gv
+*.txt
+data/
+VOCdevkit/
+result/
+mxnet/
+*.so
+*.pyc
+*.jpg
+*.log
