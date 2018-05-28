@@ -110,7 +110,7 @@ def get_symbol_train(network, num_classes, from_layers, num_filters, strides, pa
     #loc_preds (target x, y, w, h)
     #lamda = 4
     cls_prob = mx.symbol.SoftmaxOutput(data=cls_preds, label=cls_target, \
-        ignore_label=-1, use_ignore=True, grad_scale=3.0, multi_output=True, \
+        ignore_label=-1, use_ignore=True, grad_scale=4.0, multi_output=True, \
         normalization='valid', name="cls_prob")
     loc_loss_ = mx.symbol.smooth_l1(name="loc_loss_", \
         data=loc_target_mask * (loc_preds - loc_target), scalar=1.0)
