@@ -65,11 +65,11 @@ def parse_args():
                         help='momentum')
     parser.add_argument('--wd', dest='weight_decay', type=float, default=0.0005,
                         help='weight decay')
-    parser.add_argument('--mean-r', dest='mean_r', type=float, default=0,#123
+    parser.add_argument('--mean-r', dest='mean_r', type=float, default=123,#123
                         help='red mean value')
-    parser.add_argument('--mean-g', dest='mean_g', type=float, default=0,#117
+    parser.add_argument('--mean-g', dest='mean_g', type=float, default=117,#117
                         help='green mean value')
-    parser.add_argument('--mean-b', dest='mean_b', type=float, default=0,#104
+    parser.add_argument('--mean-b', dest='mean_b', type=float, default=104,#104
                         help='blue mean value')
     parser.add_argument('--lr-steps', dest='lr_refactor_step', type=str, default='120, 180',
                         help='refactor learning rate at specified epochs')
