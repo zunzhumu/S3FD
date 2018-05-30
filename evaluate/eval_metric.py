@@ -132,9 +132,6 @@ class MApMetric(mx.metric.EvalMetric):
                 continue
             pred = preds[self.pred_idx][i].asnumpy()
             # calculate for each class
-            # keep top 800 boxes
-            pred = pred[np.where(pred[:, 0] >= 0)[0]]
-            pred = pred[:800]
             while (pred.shape[0] > 0):
                 cid = int(pred[0, 0])
                 indices = np.where(pred[:, 0].astype(int) == cid)[0]
