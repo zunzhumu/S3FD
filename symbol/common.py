@@ -516,14 +516,14 @@ def multibox_layer(from_layers, num_classes, sizes=[.2, .95],
 
         if from_name == 'relu3_3':
             ## maxout
-            num_cls_pred += 2 ##0 object 1,2,3 background
+            num_cls_pred += 2 ##0,1,2 background 3 object
             bias = mx.symbol.Variable(name="{}_maxout_cls_pred_conv_bias".format(from_name),
                                       init=mx.init.Constant(0.0), attr={'__lr_mult__': '2.0'})
             cls_pred = mx.symbol.Convolution(data=from_layer, bias=bias, kernel=(3,3), \
                 stride=(1,1), pad=(1,1), num_filter=num_cls_pred, \
                 name="{}_maxout_cls_pred_conv".format(from_name))
-            object = mx.symbol.slice_axis(cls_pred, axis=1, begin=0, end=1)
-            background = mx.symbol.slice_axis(cls_pred, axis=1, begin=1, end=4)
+            object = mx.symbol.slice_axis(cls_pred, axis=1, begin=3, end=4)
+            background = mx.symbol.slice_axis(cls_pred, axis=1, begin=0, end=3)
             background = mx.symbol.max_axis(background, axis=1)
             background = mx.symbol.Reshape(data=background, shape=(-4, -1, 1,-2))
             cls_pred = mx.symbol.Concat(*[object, background], dim=1)
